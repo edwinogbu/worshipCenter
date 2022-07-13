@@ -118,7 +118,7 @@
         <div class="col-xs-4">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Category Modal </h3>
+                    <h3 class="box-title">Create New Category</h3>
             </div>
             <div class="box-body">
                 <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 "  data-toggle="modal" data-target="#modal-default"><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Category</a>

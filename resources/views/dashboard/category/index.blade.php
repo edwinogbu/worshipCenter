@@ -50,7 +50,10 @@
                                                         <a href="#">Post Category Lists: </a>
 
                                                         </span>
-                                                    <span class="description"></span>
+                                                    <span class="description">
+                                                        <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 pull-right"  data-toggle="modal" data-target="#modal-default"><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Category</a>
+
+                                                    </span>
                                                     <div class="text-right">
                                                         {{-- <a class="btn btn-success btn-round btn-out btn-md m-5 mb-4 ml-5 " ><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Blog</a> --}}
                                                         {{-- <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 "  data-toggle="modal" data-target="#modal-blog"><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Post</a> --}}
@@ -102,9 +105,11 @@
                                                                             <div class="checkbox-fade fade-in-primary">
                                                                                 <label class="check-task">
                                                                                     <input type="checkbox" value="">
-                                                                                    {{-- <span class="cr">
-                                                                                                <i class="cr-icon fa fa-check txt-default"></i>
-                                                                                            </span> --}}
+                                                                                    <span class="cr">
+                                                                                                <i class="cr-icon fa fa-check txt-default">
+                                                                                                    {{ ++$loop->index }}
+                                                                                                </i>
+                                                                                            </span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
@@ -212,49 +217,52 @@
     </div> --}}
 
     <!--CATEGORY MODAL--->
-    <div class="modal fade" id="modal-cat">
+    <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">
-
-                  <div class="card-header">
-                      <h5>Create New Post Category</h5>
-                    </div>
-
-                    <ul id="saveform_errList"></ul>
-                </h4>
+              <h4 class="modal-title">Default Modal</h4>
             </div>
             <div class="modal-body">
-                    {{-- <form action="{{ route('user.category.store') }}" method="post" enctype="multipart/form-data"> --}}
-                                @csrf
+
+
+                <form action="{{ route('user.category.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-header">
+                                <h5>Create New Post Category</h5>
+                        </div>
                             <div class="card-block">
                                 <div class="form-group has-success row">
                                         <div class="col-sm-2">
                                             <label class="col-form-label" for="inputSuccess1">Name</label>
                                         </div>
                                         <div class="col-sm-10">
-                                            <input name="name" type="text" class="name form-control form-control" id="inputSuccess1">
+                                            <input name="name" type="text" class="form-control form-control" id="inputSuccess1">
+                                            @if ($errors->has('name'))
+                                            <div class="alert alert-danger mt-1 mb-1">
+                                                {{ $errors->first('name') }}
+                                                </div>
+                                            @endif
 
                                         </div>
                                     </div>
-                                    <div class="text-right m-r-20">
-                                        {{-- <button type="submit" class="add_category  b-b-primary btn-success btn-round btn btn-out">Create</button> --}}
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger btn-lg pull-left" data-dismiss="modal">Close</button>
-                            {{-- <button type="submit" class=" b-b-primary btn-success btn-round btn btn-out">Create</button> --}}
 
-                            <div class="text-right m-r-20">
-                                <button type="submit" class="add_category  b-b-primary btn-success btn-round btn-lg btn-out">Create</button>
+                                    <div class="text-right m-r-20">
+                                        <button type="submit" class=" b-b-primary btn-success btn-round btn btn-out">Create</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                {{-- <button type="submit" class=" b-b-primary btn-success btn-round btn btn-out">Create</button> --}}
                             </div>
                         </div>
-                    {{-- </form> --}}
-            </div>
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->

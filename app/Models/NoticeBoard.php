@@ -20,8 +20,16 @@ class NoticeBoard extends Model
 
 
 
-    public function noticeBoardCategory()
-    {
-        return $this->hasMany(NoticeBoardCategory::class);
-    }
+    // public function noticeBoardCategory()
+    // {
+    //     return $this->hasMany(NoticeBoardCategory::class);
+    // }
+
+
+
+   public function noticeBoardCategory()
+   {
+       return $this->belongsTo(NoticeBoardCategory::class);
+   }
+
 }

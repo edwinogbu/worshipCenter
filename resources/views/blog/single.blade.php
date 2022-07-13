@@ -12,37 +12,38 @@
 
         <div class="row aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-12 col-md-12">
-                <div class="hotel">
-                <div class="hotel-img">
-                    {{-- <img src="{{ Storage::url($blog->picture) }}" height="200" width="200" class="card-img-top img-fluid" alt=""> --}}
+                <div class="hotel h-50">
+                <div class="hotel-img h-50">
+                    <img src="{{ Storage::url($blog->picture) }}" class="card-img-top img-fluid img-responsive h-100" alt="" style="max-width: 100%; max-height: auto;">
 
-                    {{-- <img src="{{ asset('/img/church/4.jpg')}}" alt="Hotel 1" class="img-fluid"> --}}
                 </div>
-                <h3> <a href="#"><i class="fa fa-book"></i>
-                    By: {{ Str::limit($blog->title, 25, $end='...')  }}
-                        </a></h3>
-                <div class="stars">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                </div>
+
                 <p>
-                    <span m-4>
-
-                        <a href="#"><i class="fa fa-comment"></i>By:
-                            {{ $blog->author }}
-                        </a>
-                    </span>
                     <span class="m-4">
 
                         <a href="#"><i class="fa fa-calendar"></i>
                             <span class="date">{{ Carbon\Carbon::parse($blog->created_at)->isoFormat('MMM Do YYYY') }}</span>
                         </a>
                     </span>
+                    <span m-4>
+
+                        <a href="#"><i class="fa fa-comment"></i>By:
+                            {{ $blog->author }}
+                        </a>
+                    </span>
+
+                    <h3> <a href="#"><i class="fa fa-book"></i>
+                        {{ Str::limit($blog->title, 100, $end='...')  }}
+                            </a></h3>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
                 <p>
-                    {{ $blog->body  }}
+                    {{ $blog->body  }}<br>
 
                 </p>
                 <p>

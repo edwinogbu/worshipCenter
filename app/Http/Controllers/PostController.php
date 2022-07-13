@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class PostController extends Controller
 {
@@ -48,7 +49,12 @@ class PostController extends Controller
             'body'=>'required'
         ]);
 
-        $request->user()->posts()->create($request->only('body'));
+          $posted = $request->user()->posts()->create($request->only('body'));
+
+        if ($posted == true) {
+            Toastr::success('<b><span style="font-size:30px;">New Post Created successfully :</span></b>)','success');
+
+        }
         return back();
     }
 
@@ -61,7 +67,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
 
-        return view('dashboard.posts.index', compact('post'));
+        return view('dashboard.posts.show', compact('post'));
 
     }
 
@@ -97,7 +103,11 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
-        $post->delete();
+       $deletePosted = $post->delete();
+        if ($deletePosted == true) {
+            Toastr::error('<b><span style="font-size:30px;">You have delete Your Post successfully :</span></b>)','error');
+
+        }
         return back();
     }
 }

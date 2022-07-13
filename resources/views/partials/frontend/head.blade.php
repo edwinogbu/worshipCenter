@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,14 +26,7 @@
   <!-- Template Main CSS File -->
   <link href="{{  asset('css/style.css')}}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: TheEvent - v2.3.1
-  * Template URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 
- <!-- =====================New Css for testimonial purpose===================================
      <!---Vendor CSS Files -->
   <link href="{{  asset('assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
   <link href="{{  asset('assets/vendor/aos/aos.css')}}" rel="stylesheet">
@@ -46,8 +38,6 @@
   <link href="{{  asset('assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
   <link href="assets/css/style.css" rel="stylesheet">
-
-  ======================================================== -->
 
   <style type="text/css">
 

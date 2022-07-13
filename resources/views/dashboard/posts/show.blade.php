@@ -176,19 +176,19 @@
                 <li>
 
                   <i class="fa fa-comments bg-yellow time-label"></i>
-
+{{--
                     @if ($posts->count())
-                        @foreach ($posts as $post)
+                        @foreach ($posts as $post) --}}
                            <x-post :post="$post"/>
 
-                        @endforeach
+                        {{-- @endforeach
                         <div class="timeline-footer pull-right">
 
                                 {{ $posts->links() }}
                         </div>
                     @else
                     <p>There are no Post</p>
-                    @endif
+                    @endif --}}
                 </li>
                 <!-- END timeline item -->
                 <!-- timeline time label -->

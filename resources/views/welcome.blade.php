@@ -273,7 +273,14 @@ image{
     <div class="container">
         @if (Route::has('user.login'))
 
-      <div id="logo" class="pull-left">
+      <div id="logo" class="pull-left"  style="
+      background-image: url('img/logo-mega-glory-full.png');
+
+       background-repeat:no-repeat;
+      background-size:fill;
+      background: transparent;
+
+      ">
             <!-- Uncomment below if you prefer to use a text logo -->
             <span><h6><a href="{{ url('user/home') }}">
                 <div class="text-center">
@@ -292,11 +299,20 @@ image{
                 @endauth
       </div>
 
-      <nav id="nav-menu-container">
+      <nav id="nav-menu-container"  style="
+      background-image: url('img/logo-mega-glory-full.png');
+
+       background-repeat:no-repeat;
+      background-size:fill;
+      background: transparent;
+      /* color:#05083b; */
+      background-color: #05083b;
+
+      ">
         <ul class="nav-menu pull-left justify-between-center">
           <li class=" menu-active home about-btn"><a href="{{ url('/') }}">Home</a></li>
           <li><a href="{{ url('blog') }}" id=" "> Blog  </a>
-            <ul>
+            {{-- <ul>
               <li><a href="{{ url('about') }}" id=" ">About</a></li>
               <li><a href="{{ url('gallery') }}" id="#">Gallery</a></li>
               <li ><a href="{{ url('blog')}}">Youth</a></li>
@@ -304,11 +320,11 @@ image{
             <li><a href="#">Music</a></li>
 
 
-          </ul>
+          </ul> --}}
           </li>
 
 
-          <li class="drop-down " id=" "><a href="">Ministries</a>
+          {{-- <li class="drop-down " id=" "><a href="">Ministries</a>
             <ul id=" ">
               <li><a href="{{ url('blog') }}">Men Ministries</a></li>
 
@@ -326,9 +342,9 @@ image{
                 </ul>
               </li>
             </ul>
-          </li>
-          <li><a href="#schedule">   </a></li>
-          <li><a href="#venue">     </a></li>
+          </li> --}}
+          <li><a href="#schedule">About   </a></li>
+          {{-- <li><a href="#venue">     </a></li> --}}
           <li><a href="{{ url('sermon') }}" id=" ">Sermon</a></li>
 
 
@@ -1373,8 +1389,7 @@ image{
                                             </time></div>
                                             <div class="col-md-3">
                                                 <div class="speak" style="width: 100%">
-                                                <img src="{{ Storage::url($noticeBoard->banner) }}" alt="pastor picture" style="height: ; width: ;">
-                                                {{-- <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($noticeBoard->banner) }}" style="width: 200px; height: 200px; border: 1px solid #000000; border-radius:100%;" alt="User profile picture" height=""> --}}
+                                                <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($noticeBoard->banner) }}" style="width: 200px; height: 200px; border: 1px solid #000000; border-radius:100%;" alt="User profile picture" height="">
 
                                             </div>
 
@@ -1385,8 +1400,8 @@ image{
 
                                                 <h4>Theme: <span> <span>
 
-                                                    {{-- {{ $noticeBoard->noticeBoardCategory->name }} --}}
-                                                    {{ $noticeBoard->theme }}
+                                                    {{ $noticeBoard->noticeBoardCategory->name }}
+                                                    {{-- {{ $noticeBoard->theme }} --}}
                                                 </span></span></h4>
                                                 <h4>Spaeker: <span> <span>
                                                     {{ $noticeBoard->speaker  }}
@@ -1413,44 +1428,64 @@ image{
 
                             <!-- Schdule Day 2 -->
                             <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
+                                @foreach ($noticeBoards as $noticeBoard)
                                 <div class="row schedule-item">
-                                    <div class="col-md-2">
-                                         <time> <h4>Time</h4></time>
+                                    <div class="col-md-3">
+                                        <time> <h4>Time</h4></time>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                             <time> <h4>Speaker</h4></time>
                                     </div>
-                                     <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <h4>Resource</h4>
                                     </div>
                                 </div>
 
-                                @for ($i = 1; $i <= 1; $i++)
-                                    <div class="row schedule-item mb-4">
-                                            <div class="col-md-3"><time>10:00 AM</time></div>
-                                            <div class="col-md-3">
-                                                <div class="speaker">
-                                                    <img src="{{ asset('img/pastor/pastor21.jpg') }}" alt="pastor picture">
-                                                </div>
+                                <div class="row schedule-item mb-4">
+                                        <div class="col-md-3"><time>
+                                            <h4><span>
+                                                {{ Carbon\Carbon::parse($noticeBoard->start_time)->Format('H:i:s') }} -
+                                                {{ Carbon\Carbon::parse($noticeBoard->end_time)->Format('H:i:s') }}
+                                                Am
+                                            </span></h4>
+                                            {{-- {{ Carbon::parse($noticeBoard->start_time)->isoFormat('H:i') }} --}}
+                                        </time></div>
+                                        <div class="col-md-3">
+                                            <div class="speak" style="width: 100%">
+                                            <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($noticeBoard->banner) }}" style="width: 200px; height: 200px; border: 1px solid #000000; border-radius:100%;" alt="User profile picture" height="">
 
-                                            </div>
+                                        </div>
 
-                                            <div class="col-md-6">
+                                        </div>
 
-                                                <h4>Theme: <span> <span>hunger and anger.</span></span></h4>
-                                                <h4>Spaeker: <span> <span>prophet success.</span></span></h4>
-                                                <h4>Topic: <span> <span>Unstoppable Belivers.</span></span></h4>
-                                                <h4>Text: <span> <span>1 chronicle 1:9.</span></span></h4>
 
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <br>
-                                    </div>
-                                @endfor
+                                        <div class="col-md-6">
+
+                                            <h4>Theme: <span> <span>
+
+                                                {{ $noticeBoard->noticeBoardCategory->name }}
+                                                {{-- {{ $noticeBoard->theme }} --}}
+                                            </span></span></h4>
+                                            <h4>Spaeker: <span> <span>
+                                                {{ $noticeBoard->speaker  }}
+                                            </span></span></h4>
+                                            <h4>Topic: <span> <span>
+                                                {{ $noticeBoard->topic }}
+                                            </span></span></h4>
+                                            <h4>Text: <span> <span>
+                                                {{ $noticeBoard->bible_text }}
+                                            </span></span></h4>
+
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                </div>
+                            @endforeach
+
 
                             </div>
                             <!-- End Schdule Day 2 -->
@@ -1458,45 +1493,64 @@ image{
                             <!-- Schdule Day 3 -->
                             <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-3">
 
+                                @foreach ($noticeBoards as $noticeBoard)
                                 <div class="row schedule-item">
                                     <div class="col-md-3">
-                                         <time> <h4>Time</h4></time>
+                                        <time> <h4>Time</h4></time>
                                     </div>
 
                                     <div class="col-md-3">
                                             <time> <h4>Speaker</h4></time>
                                     </div>
-                                     <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <h4>Resource</h4>
                                     </div>
                                 </div>
 
-                                @for ($i = 1; $i <= 1; $i++)
-                                    <div class="row schedule-item mb-4">
-                                            <div class="col-md-3"><time>10:00 AM</time></div>
-                                            <div class="col-md-3">
-                                                <div class="speaker">
-                                                    <img src="{{ asset('img/pastor/pastor21.jpg') }}" alt="pastor picture">
-                                                </div>
+                                <div class="row schedule-item mb-4">
+                                        <div class="col-md-3"><time>
+                                            <h4><span>
+                                                {{ Carbon\Carbon::parse($noticeBoard->start_time)->Format('H:i:s') }} -
+                                                {{ Carbon\Carbon::parse($noticeBoard->end_time)->Format('H:i:s') }}
+                                                Am
+                                            </span></h4>
+                                            {{-- {{ Carbon::parse($noticeBoard->start_time)->isoFormat('H:i') }} --}}
+                                        </time></div>
+                                        <div class="col-md-3">
+                                            <div class="speak" style="width: 100%">
+                                            <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url($noticeBoard->banner) }}" style="width: 200px; height: 200px; border: 1px solid #000000; border-radius:100%;" alt="User profile picture" height="">
 
-                                            </div>
+                                        </div>
+
+                                        </div>
 
 
-                                            <div class="col-md-6">
+                                        <div class="col-md-6">
 
-                                                <h4>Theme: <span> <span>hunger and anger.</span></span></h4>
-                                                <h4>Spaeker: <span> <span>prophet success.</span></span></h4>
-                                                <h4>Topic: <span> <span>Unstoppable Belivers.</span></span></h4>
-                                                <h4>Text: <span> <span>1 chronicle 1:9.</span></span></h4>
+                                            <h4>Theme: <span> <span>
 
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <br>
-                                    </div>
-                                @endfor
+                                                {{ $noticeBoard->noticeBoardCategory->name }}
+                                                {{-- {{ $noticeBoard->theme }} --}}
+                                            </span></span></h4>
+                                            <h4>Spaeker: <span> <span>
+                                                {{ $noticeBoard->speaker  }}
+                                            </span></span></h4>
+                                            <h4>Topic: <span> <span>
+                                                {{ $noticeBoard->topic }}
+                                            </span></span></h4>
+                                            <h4>Text: <span> <span>
+                                                {{ $noticeBoard->bible_text }}
+                                            </span></span></h4>
+
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                </div>
+                            @endforeach
+
 
                             </div>
                             <!-- End Schdule Day 2 -->
@@ -1524,14 +1578,14 @@ image{
             @foreach ($blogs as $post)
             @if ($post->status==1)
                 <div class="col-lg-4 col-md-6">
-                        <div class="hotel">
-                        <div class="hotel-img">
-                            <img src="{{ Storage::url($post->picture) }}" height="200" width="200" class="card-img-top img-fluid" alt="">
+                        <div class="hotel h-100">
+                        <div class="hotel-img h-50">
+                            <img src="{{ Storage::url($post->picture) }}" class="card-img-top img-fluid h-100 img-responsive" alt="" style="max-width: 100%; max-height: auto;">
 
                             {{-- <img src="{{ asset('/img/church/4.jpg')}}" alt="Hotel 1" class="img-fluid"> --}}
                         </div>
                         <h3> <a href="#"><i class="fa fa-book"></i>
-                            By: {{ Str::limit($post->title, 25, $end='...')  }}
+                             {{ Str::limit($post->title, 25, $end='...')  }}
                               </a></h3>
                         <div class="stars">
                             <i class="bi bi-star-fill"></i>

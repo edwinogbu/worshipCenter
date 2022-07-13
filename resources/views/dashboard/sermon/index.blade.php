@@ -4,19 +4,22 @@
 <div class="container">
     <!-- About Me Box -->
     <div class="box box-primary p-5">
-       <div class="box-header with-border p-5">
-           <h3 class="box-title"> Notice BoardCategory Dashboard</h3>
+       <div class="box-header with-border p-5 text-center">
+           <h3 class="box-title text-center" style="text-align: center; font-weight: 900;"> Sermons Dashboard</h3>
+           <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 pull-right p-5" style="margin: 20px;" ><span class="glyphicon glyphicon-book btn-round btn-out"></span>Church Forum</a>
+           <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 pull-left p-5" style="margin: 20px;" ><span class="glyphicon glyphicon-book btn-round btn-out"></span>Home</a>
+
        </div>
    </div>
 {{-- </div> --}}
    <!-- /.box -->
    <div class="row justify-content-center">
 
-           <section class="content-header with-border">
+           {{-- <section class="content-header with-border">
 
            <div class="box box-header with-border box-success">
                <h1>
-                   {{ Auth::user()->first_name }}'s Profile
+                   Sermons Dashboard
                </h1>
 
                @if (Session::has('success'))
@@ -39,7 +42,7 @@
 
            </div>
 
-           </section>
+           </section> --}}
 
                 <!-- Main content -->
                 <section class="content">
@@ -62,7 +65,7 @@
                                                     <div class="text-right">
                                                         {{-- <a class="btn btn-success btn-round btn-out btn-md m-5 mb-4 ml-5 " ><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Blog</a> --}}
                                                         {{-- <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 "  data-toggle="modal" data-target="#modal-blog"><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Post</a> --}}
-                                                        <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 "  data-toggle="modal" data-target="#modal-noticeBoardCategory"><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Category</a>
+                                                        <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 "  data-toggle="modal" data-target="#modal-sermon" style="margin-right: 50px;"><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Sermons</a>
 
                                                     </div>
                                             </div>
@@ -202,26 +205,8 @@
 
 
 
-{{--
-
-    <div class="row">
-        <div class="col-xs-4">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Category Modal </h3>
-            </div>
-            <div class="box-body"> --}}
-                {{-- <a class="btn btn-success btn-round btn-lg btn-out btn-md m-5 mb-4 ml-5 "  data-toggle="modal" data-target="#modal-default"><span class="glyphicon glyphicon-book btn-round btn-out"></span>Create Category</a> --}}
-              {{-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                Launch Default Modal
-              </button> --}}
-            {{-- </div>
-          </div>
-        </div>
-    </div> --}}
-
-    <!--CATEGORY MODAL--->
-    <div class="modal fade" id="modal-noticeBoardCategory">
+    <!--SERMON MODAL--->
+    <div class="modal fade" id="modal-sermon">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -230,32 +215,112 @@
               <h4 class="modal-title">Default Modal</h4>
             </div>
             <div class="modal-body">
-                    <form action="{{ route('user.noticeBoardCategory.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                            <div class="card-header">
-                                <h5>Create New  notice Board Category</h5>
+                <form method="POST" action="{{ route('user.sermon.store') }}" class="box-body box-profile mx-5"  enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="form-group row">
+
+                        <div class="col-md-6">
+                            <label for="file" class="col-form-label text-md-right">{{ __('file') }}</label>
+
+                            <input id="file" type="file" class="form-control @error('file') is-invalid @enderror" name="file" value="{{ old('file') }}" required autocomplete="file" autofocus>
+
+                            @error('file')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="sermon_theme" class="col-form-label text-md-right">{{ __('Program Theme') }}</label>
+                            <input type="text" name="sermon_theme" id="sermon_theme" class="form-control @error('sermon_theme') is-invalid @enderror" value="{{ old('sermon_theme') }}">
+                            @error('sermon_theme')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-md-6">
+                                <label for="speaker_name" class="col-form-label text-md-right">{{ __('speaker_name') }}</label>
+                                <input type="text" name="speaker_name" id="speaker_name" class="form-control @error('speaker_name') is-invalid @enderror" value="{{ old('speaker_name') }}">
+                                @error('speaker_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="card-block">
-                                <div class="form-group has-success row">
-                                        <div class="col-sm-2">
-                                            <label class="col-form-label" for="inputSuccess1">Name</label>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <input name="name" type="text" class="form-control form-control" id="inputSuccess1">
-                                            @if ($errors->has('name'))
-                                            <div class="alert alert-danger mt-1 mb-1">
-                                                {{ $errors->first('name') }}
-                                                </div>
-                                            @endif
 
-                                        </div>
-                                    </div>
+                            <div class="col-md-6">
+                                <label for="speaker_picture" class="col-form-label text-md-right">{{ __('speaker_picture') }}</label>
+                                <input type="file" name="speaker_picture" id="speaker_picture" class="form-control @error('speaker_picture') is-invalid @enderror" value="{{ old('speaker_picture') }}">
+                                @error('speaker_picture')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-                                    <div class="text-right m-r-20">
-                                        <button type="submit" class=" b-b-primary btn-success btn-round btn btn-out">Create</button>
-                                    </div>
-                                </div>
-                    </form>
+
+                        <div class="form-group row">
+
+                            <div class="col-md-6">
+                                <label for="sermon_title" class="col-form-label text-md-right">{{ __('sermon_title') }}</label>
+                                <input type="text" name="sermon_title" id="sermon_title" class="form-control @error('sermon_title') is-invalid @enderror" value="{{ old('sermon_title') }}">
+                                @error('sermon_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="sermon_text" class="col-form-label text-md-right">{{ __('sermon_text') }}</label>
+                                <textarea name="sermon_text"  cols="30" rows="3" id="sermon_text" type="text" class="form-control @error('sermon_text') is-invalid @enderror" value="{{ old('sermon_text') }}">
+                                {{ old('sermon_text') }}
+                                </textarea>
+
+                                @error('sermon_text')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+
+
+                        <div class="col-md-6">
+                            <label for="sermon_date" class="col-form-label text-md-right">{{ __('bible_text') }}</label>
+
+                            <input id="sermon_date" type="text" class="form-control @error('sermon_date') is-invalid @enderror" name="sermon_date" value="{{ old('sermon_date') }}" required autocomplete="sermon_date" autofocus>
+
+                            @error('sermon_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row mb-0 text-center">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-lg btn-danger" style="background-color: #f24; color:#fff; float:center">
+                                {{ __('Create Event') }}
+                            </button>
+                        </div>
+                    </div>
+    </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>

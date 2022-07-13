@@ -15,9 +15,9 @@
            <section class="content-header with-border">
 
            <div class="box box-header with-border box-success">
-               {{-- <h1>
+               <h1>
                    {{ Auth::user()->first_name }}'s Profile
-               </h1> --}}
+               </h1>
 
                @if (Session::has('success'))
                <div class="alert alert-dark-success alert-dismissable fade show" style="width: 15%;">
@@ -92,27 +92,23 @@
                                                                         </div>
                                                                     </th>
 
-                                                                    <th width="">Program</th>
-                                                                    <th width="">Category</th>
-                                                                    <th width="">Start Time</th>
-                                                                    <th width="">End Time</th>
-                                                                    <th width="">Start Date</th>
-                                                                    <th width="">End Date</th>
-                                                                    <th width="">Venue</th>
-                                                                    <th width="">Banner</th>
-                                                                    <th width="">Speaker</th>
-                                                                    <th width="">Topic</th>
-                                                                    <th width="">Bible Text</th>
-                                                                    <th width="">Theme</th>
-                                                                    <th width="">Created Date</th>
+                                                                    <th width="">Program song_title</th>
+                                                                    <th width="">song Name</th>
+                                                                    <th width=""> song_unique_name</th>
+                                                                    <th width=""> song_size</th>
+                                                                    <th width="">song_size </th>
+                                                                    <th width=""> song_extension</th>
+                                                                    <th width="">album_name Picture</th>
+                                                                    <th width="">album_year </th>
+                                                                    <th width="">artist_name </th>
+                                                                    <th width="">song_thumbnail </th>
                                                                     <th class="text-right">Action</th>
-                        {{-- notice_board_category_id,start_time,end_time,start_date,end_date,venue,banner,speaker, theme,topic, bible_text --}}
 
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
 
-                                                                    @foreach ($noticeBoards as $noticeBoard)
+                                                                    @foreach ($sermons as $sermon)
 
                                                                     <tr>
                                                                         <td>
@@ -120,67 +116,61 @@
                                                                             <div class="checkbox-fade fade-in-primary">
                                                                                 <label class="check-task">
                                                                                     <input type="checkbox" value="">
-                                                                                    {{-- <span class="cr">
-                                                                                                <i class="cr-icon fa fa-check txt-default"></i>
-                                                                                            </span> --}}
+                                                                                    <span class="cr">
+                                                                                        <i class="cr-icon fa fa-check txt-default">
+                                                                                            {{-- {{ ++$loop->index }} --}}
+
+                                                                                        </i>
+                                                                                    </span>
+
                                                                                 </label>
                                                                             </div>
                                                                         </div>
 
                                                                     </td>
                                                                     <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->theme), $words =100, $end='..') }}
+                                                                        {{ Str::words(strtoupper($sermon->sermon_theme), $words =100, $end='..') }}
                                                                     </td>
                                                                     <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->noticeBoardCategory->name), $words =100, $end='..') }}
+                                                                        {{ Str::words(strtoupper($sermon->speaker_name), $words =100, $end='..') }}
                                                                     </td>
                                                                     <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->start_time), $words =100, $end='..') }}
+                                                                        {{ Str::words(strtoupper($sermon->sermon_title), $words =100, $end='..') }}
                                                                     </td>
                                                                     <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->end_time), $words =100, $end='..') }}
+                                                                        {{ Str::words(strtoupper($sermon->sermon_text), $words =100, $end='..') }}
                                                                     </td>
                                                                     <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->start_date), $words =100, $end='..') }}
+                                                                        {{-- {{ Str::words(strtoupper($sermon->sermon_date), $words =100, $end='..') }} --}}
                                                                     </td>
                                                                     <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->end_date), $words =100, $end='..') }}
+                                                                        {{-- <a href="{{ route('user.sermon.show',$sermon->id) }}">View</a> --}}
+                                                                        {{-- {{ Str::words(strtoupper($sermon->file), $words =100, $end='..') }} --}}
                                                                     </td>
                                                                     <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->venue), $words =100, $end='..') }}
-                                                                    </td>
-                                                                    <td>
-                                                                        {{ Str::words(strtoupper($noticeBoard->speaker), $words =100, $end='..') }}
+                                                                        {{-- <a href="{{ route('user.download', $sermon->file) }}">Download</a> --}}
+                                                                        {{-- {{ Str::words(strtoupper($sermon->speaker_picture), $words =100, $end='..') }} --}}
                                                                     </td>
 
-                                                                    <td>
-                                                                        <span class="date">{{ $noticeBoard->theme }}</span>
+                                                                    {{-- <td> --}}
+                                                                        {{-- <span class="date">{{ Carbon\Carbon::parse($sermon->created_at)->isoFormat('MMM Do YYYY') }}</span> --}}
 
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="date">{{ $noticeBoard->topic }}</span>
+                                                                    {{-- </td> --}}
 
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="date">{{ $noticeBoard->created_at }}</span>
-
-                                                                    </td>
-
-                                                                    <td class="">
+                                                                    <td class="text-right">
 
 
-                                                                        <form style="display: inline" action="{{ route('user.noticeBoard.delete', $noticeBoard->id) }}" method="post">
-
-                                                                            <div class="btn-group">
-
-                                                                                <a class="btn btn-primary btn-round btn-out btn-sm mr-3 " href="{{ route('user.noticeBoard.edit',$noticeBoard->id) }}"><span class="glyphicon glyphicon-pencil btn-round btn-out"></span>Edit</a>
+                                                                        <div class="btn-group " style="display: inline">
+                                                                            <form style="display: inline" action="#" method="post">
+                                                                                <a style="display: inline; font-style: italic;" class="btn btn-primary btn-round btn-out btn-sm mr-3 " href="#"><span class="glyphicon glyphicon-pencil btn-round btn-out"></span>Edit</a>
+                                                                                {{-- <a style="display: inline; font-style: italic;" class="btn btn-info btn-round btn-out btn-sm mr-3 " href="{{ route('user.sermon.show',$sermon->id) }}"><span class="glyphicon glyphicon-pencil btn-round btn-out"></span>Show</a> --}}
 
                                                                                 @csrf
                                                                                 @method('DELETE')
-                                                                                <button type="submit" class=" btn btn-danger btn-round btn-out btn-sm mr-3 btn-danger btn-round btn-out"><span class="glyphicon glyphicon-trash btn-round btn-out"></span>Delete</button>
-                                                                            </div>
+                                                                                <button type="submit" style="display: inline; font-style: italic;" class="btn btn-danger btn-round btn-out btn-sm mr-3 " class=" btn waves-effect waves-light btn-danger btn-round btn-out" style="display: inline"><i class="icofont icofont-warning-alt"></i>Delete</button>
 
-                                                                        </form>
+                                                                            </form>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                                 @endforeach
@@ -241,27 +231,67 @@
               <h4 class="modal-title">Default Modal</h4>
             </div>
             <div class="modal-body">
-                    <form action="{{ route('user.noticeBoardCategory.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('user.sermonAudio.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="card-header">
                                 <h5>Create New  notice Board Category</h5>
                             </div>
                             <div class="card-block">
-                                <div class="form-group has-success row">
+                                    <div class="form-group has-success row">
                                         <div class="col-sm-2">
-                                            <label class="col-form-label" for="inputSuccess1">Name</label>
+                                            <label class="col-form-label" for="inputSuccess1">File upload</label>
                                         </div>
                                         <div class="col-sm-10">
-                                            <input name="name" type="text" class="form-control form-control" id="inputSuccess1">
-                                            @if ($errors->has('name'))
+                                            <input name="file[]" style="height:38px" type="file" class="form-control form-control" id="inputSuccess1">
+                                            {{-- @if ($errors->has('file'))
                                             <div class="alert alert-danger mt-1 mb-1">
-                                                {{ $errors->first('name') }}
+                                                {{ $errors->first('file') }}
                                                 </div>
-                                            @endif
+                                            @endif --}}
 
                                         </div>
                                     </div>
+                                    <div class="form-group has-success row">
+                                        <div class="col-sm-2">
+                                            <label class="col-form-label" for="inputSuccess1">Artist Name</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input name="artist_name[]" style="height:38px" type="text" class="form-control form-control" id="inputSuccess1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success row">
+                                        <div class="col-sm-2">
+                                            <label class="col-form-label" for="inputSuccess1">Album Name</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input name="album_name[]" style="height:38px" type="text" class="form-control form-control" id="inputSuccess1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success row">
+                                        <div class="col-sm-2">
+                                            <label class="col-form-label" for="inputSuccess1">Album Year</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input name="album_year[]" style="height:38px" type="text" class="form-control form-control" id="inputSuccess1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success row">
+                                        <div class="col-sm-2">
+                                            <label class="col-form-label" for="inputSuccess1">Album Year</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input name="song_title[]" type="text" class="form-control form-control" id="inputSuccess1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success row">
+                                        <div class="col-sm-2">
+                                            <label class="col-form-label" for="inputSuccess1">Song Thumbnail</label>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input name="song_thumbnail[]" style="height:38px" type="file" class="form-control form-control" id="inputSuccess1">
 
+                                        </div>
+                                    </div>
                                     <div class="text-right m-r-20">
                                         <button type="submit" class=" b-b-primary btn-success btn-round btn btn-out">Create</button>
                                     </div>

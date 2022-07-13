@@ -20,6 +20,7 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\IncomeExpenseSummary;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AudioController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\IncomeCategoryController;
 use App\Http\Controllers\UserManagementController;
@@ -28,8 +29,10 @@ use App\Http\Controllers\DeclarationCategoryController;
 use App\Http\Controllers\IncomeExpenseSummaryContoller;
 use App\Http\Controllers\NoticeBoardCategoryController;
 use App\Http\Controllers\IncomeExpenseSummaryController;
+use App\Http\Controllers\PostUserCommentController;
 use App\Http\Controllers\PropheticDeclarationController;
 use App\Http\Controllers\UserPostController;
+use App\Models\Audio;
 
 /*
 |--------------------------------------------------------------------------
@@ -290,7 +293,7 @@ Route::prefix('user')->name('user.')->group(function(){
             route::get('/userPost', [PostController::class, 'index'])->name('userPost');
             route::post('/userPost', [PostController::class, 'store']);
 
-            route::get('show-posting/show/{post}', [PostController::class, 'show'])->name('userPost.show');
+            route::get('show-posting/{post}', [PostController::class, 'show'])->name('userPost.show');
             route::delete('userPosting/{post}', [PostController::class, 'destroy'])->name('userPost.delete');
 
 
@@ -301,6 +304,22 @@ Route::prefix('user')->name('user.')->group(function(){
 
             // USER POST INFO
             route::get('/userPost/{user:first_name}/posts', [UserPostController::class, 'index'])->name('userPost.posts');
+            // route::delete('/userPost-like/{post}/like', [PostLikeController::class, 'destroy'])->name('userPost.like.delete');
+
+            // POST COMMENTS
+            route::get('/userComment/view-post', [PostUserCommentController::class, 'index'])->name('userComment.index');
+            route::post('/userComment/make-comment', [PostUserCommentController::class, 'store'])->name('makeComment.store');
+
+            route::get('show-comments/{post}', [PostUserCommentController::class, 'show'])->name('userComment.show');
+            route::delete('userComment/{post}', [PostUserCommentController::class, 'destroy'])->name('userComment.delete');
+
+
+
+            // AUDIO SERMON
+            route::get('/sermonAudio', [AudioController::class, 'index'])->name('sermonAudio.index');
+            route::post('/sermonAudio-save', [AudioController::class, 'store'])->name('sermonAudio.store');
+            route::get('/sermonAudio-download', [AudioController::class, 'download'])->name('sermonAudio.download');
+
             // route::delete('/userPost-like/{post}/like', [PostLikeController::class, 'destroy'])->name('userPost.like.delete');
 
 

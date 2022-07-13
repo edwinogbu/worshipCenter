@@ -234,16 +234,26 @@
                                                                         </td>
 
                                                                         <td>
-                                                                            {{ Str::ucfirst($profile->user->membership_id) }}
+                                                                            {{ !empty(Str::ucfirst($profile->user)) ? Str::ucfirst($profile->user->membership_id) : 'empty data'  }}
+                                                                            {{-- {{ !empty(auth()->user()->profile) ? Str::ucfirst(Auth::user()->profile->qualification):'No data pls update profile' }} --}}
+
                                                                         </td>
 
-                                                                        <td>{{ Str::ucfirst($profile->user->first_name) }} &nbsp; {{ Str::ucfirst($profile->user->sur_name) }}</td>
+                                                                        <td>
+                                                                            {{-- {{ Str::ucfirst($profile->user->first_name) }} &nbsp; {{ Str::ucfirst($profile->user->sur_name) }} --}}
+                                                                            {{ !empty(Str::ucfirst($profile->user)) ? Str::ucfirst($profile->user->first_name) : 'empty data'  }}
+
+                                                                        </td>
 
                                                                         <td>{{ Auth::user()->email }}</td>
 
                                                                         <td>{{ $profile->gender }}</td>
 
-                                                                        <td>{{ $profile->user->phone }}</td>
+                                                                        <td>
+                                                                            {{ !empty(Str::ucfirst($profile->user)) ? Str::ucfirst($profile->user->phone) : 'empty data'  }}
+
+                                                                            {{-- {{ $profile->user->phone }} --}}
+                                                                        </td>
 
                                                                         <td class="text-right">
 

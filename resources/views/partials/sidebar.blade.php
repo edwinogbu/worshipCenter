@@ -1,6 +1,9 @@
   <aside class="main-sidebar">
     <div class="user-block">
-        <img class="profile-user-img img-responsive img-circle" src="{{ asset('img/logo-mega-glory-full.png') }}" alt="User profile picture" height="100">
+        <a href="{{ url('/') }}">
+
+            <img class="profile-user-img img-responsive img-circle" src="{{ asset('img/logo-mega-glory-full.png') }}" alt="User profile picture" height="100">
+        </a>
     </div>
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -9,8 +12,10 @@
         <div class="pull-left image">
             @if (auth()->user()->profile !=null)
 
+            <a href="{{ url('/') }}">
 
-            <img src="{{ Storage::url(auth()->user()->profile->picture) }}" class="img-circle" alt="User Image">
+                <img src="{{ Storage::url(auth()->user()->profile->picture) }}" class="img-circle" alt="User Image" style="max-width: 10%; max-height: 10%; border-radius:50%;">
+            </a>
 
             @else
 
@@ -23,7 +28,7 @@
         </div>
         <div class="pull-left info">
           <p>{{ auth()->user()->first_name }}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="{{ url('/') }}"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       <!-- search form -->
@@ -280,7 +285,7 @@
 
                     </ul>
                   </li>
-                  <li class="header">SERMON  SECTION</li>
+                <li class="header">SERMON  SECTION</li>
                   <div class="box box-primary"></div>
 
                   <li class="treeview">
@@ -295,8 +300,12 @@
                         <li><a href="{{ route('user.sermon.create') }}"><i class="fa fa-book"></i> create Sermons</a></li>
                         <li><a href="{{ route('user.sermon.index') }}"><i class="fa fa-book"></i> View Sermons</a></li>
 
+                        <li><a href="{{ route('user.sermonAudio.index') }}"><i class="fa fa-book"></i> Audio</a></li>
+                        <li><a href="{{ route('user.sermonAudio.download') }}"><i class="fa fa-book"></i> Audio</a></li>
+                        {{-- <li><a href="{{ route('user.sermon.index') }}"><i class="fa fa-book"></i> View Sermons</a></li> --}}
+
                     </ul>
-                  </li>
+                </li>
 
                   <li class="header">PROPHETIC DECLARATION SECTION</li>
                   <div class="box box-primary"></div>
@@ -451,24 +460,24 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
-            <ul class="treeview-menu" style="display: none;">
-                <div class="box box-primary"></div>
-                <div class="header"></div>
-                <li class="treeview">
-                    <a href="#">
-                      <i class="fa fa-laptop"></i>
-                      <span>NOTICE CATEGORY</span>
-                      <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                      </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ route('user.noticeBoardCategory.create') }}"><i class="fa fa-book"></i> create category </a></li>
-                        <li><a href="{{ route('user.noticeBoardCategory.index') }}"><i class="fa fa-book"></i> View Blog category </a></li>
+                <ul class="treeview-menu" style="display: none;">
+                    <div class="box box-primary"></div>
+                    <div class="header"></div>
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="fa fa-laptop"></i>
+                        <span>NOTICE CATEGORY</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('user.noticeBoardCategory.create') }}"><i class="fa fa-book"></i> create category </a></li>
+                            <li><a href="{{ route('user.noticeBoardCategory.index') }}"><i class="fa fa-book"></i> View Blog category </a></li>
 
-                    </ul>
-                  </li>
-                  <li class="header">NOTICE CATEGORY SECTION</li>
+                </ul>
+        </li>
+        <li class="header">NOTICE CATEGORY SECTION</li>
                   <div class="box box-primary"></div>
 
                   <li class="treeview">
@@ -481,10 +490,10 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('user.noticeBoard.create') }}"><i class="fa fa-book"></i> create</a></li>
-                        <li><a href="{{ route('user.noticeBoard.index') }}"><i class="fa fa-book"></i> View Blog</a></li>
+                        <li><a href="{{ route('user.noticeBoard.index') }}"><i class="fa fa-book"></i> Manage Notice Board</a></li>
 
                     </ul>
-                  </li>
+        </li>
 
                   <li class="header">BLOG SECTION</li>
                   <div class="box box-primary"></div>
@@ -859,6 +868,72 @@
                 </ul>
               </li>
 
+
+        <li class="header">SERMON  SECTION</li>
+        <div class="box box-primary"></div>
+
+    <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>SERMONS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li><a href="{{ route('user.sermon.create') }}"><i class="fa fa-book"></i> create Sermons</a></li>
+              <li><a href="{{ route('user.sermon.index') }}"><i class="fa fa-book"></i> View Sermons</a></li>
+
+              <li><a href="{{ route('user.sermonAudio.index') }}"><i class="fa fa-book"></i> Audio</a></li>
+              <li><a href="{{ route('user.sermonAudio.download') }}"><i class="fa fa-book"></i> Audio</a></li>
+              {{-- <li><a href="{{ route('user.sermon.index') }}"><i class="fa fa-book"></i> View Sermons</a></li> --}}
+
+          </ul>
+    </li>
+
+
+    <li class="treeview">
+        <a href="#">
+          <i class="fa fa-share"></i> <span>EVENT SECTION</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+            <ul class="treeview-menu" style="display: none;">
+                <div class="box box-primary"></div>
+                <div class="header"></div>
+                <li class="treeview">
+                    <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>NOTICE CATEGORY</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('user.noticeBoardCategory.create') }}"><i class="fa fa-book"></i> create category </a></li>
+                        <li><a href="{{ route('user.noticeBoardCategory.index') }}"><i class="fa fa-book"></i> View Blog category </a></li>
+
+            </ul>
+    </li>
+    <li class="header">NOTICE CATEGORY SECTION</li>
+              <div class="box box-primary"></div>
+
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-laptop"></i>
+                  <span>NOTICE BOARD</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('user.noticeBoard.create') }}"><i class="fa fa-book"></i> create</a></li>
+                    <li><a href="{{ route('user.noticeBoard.index') }}"><i class="fa fa-book"></i> Manage Notice Board</a></li>
+
+                </ul>
+    </li>
+
     @endif
 
 
@@ -993,6 +1068,29 @@
 
                 </ul>
             </li>
+
+        <li class="header">SERMON  SECTION</li>
+            <div class="box box-primary"></div>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i>
+                <span>SERMONS</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="{{ route('user.sermon.create') }}"><i class="fa fa-book"></i> create Sermons</a></li>
+                  <li><a href="{{ route('user.sermon.index') }}"><i class="fa fa-book"></i> View Sermons</a></li>
+
+                  <li><a href="{{ route('user.sermonAudio.index') }}"><i class="fa fa-book"></i> Audio</a></li>
+                  <li><a href="{{ route('user.sermonAudio.download') }}"><i class="fa fa-book"></i> Audio</a></li>
+                  {{-- <li><a href="{{ route('user.sermon.index') }}"><i class="fa fa-book"></i> View Sermons</a></li> --}}
+
+              </ul>
+        </li>
+
 
             @endif
 

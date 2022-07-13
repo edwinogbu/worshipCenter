@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Response;
 // use Illuminate\Support\Facades\header;
 use Illuminate\Support\Facades\Storage;
 
+// use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Response;
+
+
 
 class SermonController extends Controller
 {
@@ -75,8 +79,18 @@ class SermonController extends Controller
      */
     public function download(Request $request, $file)
     {
+
+        $filePath = public_path('sermons/'.$file);
+        $headers = ['Content-Type: application/'.$file];
+        $fileName = time().$file;
+        return response()->download($filePath, $fileName, $headers);
+        // $path = public_path('sermons/'.$file);
+    	// $fileName = 'sermons.file';
+
+    	// return Response::download($path, $fileName, ['Content-Type: application/file']);
+
         // return response()->download(public_path('sermons/'.$file),$http_response_header);
-        return response()->download(public_path('sermons/'.$file));
+        // return response()->download(public_path('sermons/'.$file));
     }
 
 

@@ -10,6 +10,7 @@ use App\Models\Profile;
 use App\Models\CashBook;
 use App\Models\Testimony;
 use App\Models\Appointment;
+use App\Models\PostUserComment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -104,6 +105,11 @@ class User extends Authenticatable
     public function receivedLikes()
     {
         return $this->hasManyThrough(Like::class, Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->belongsToMany(PostUserComment::class);
     }
 
 }

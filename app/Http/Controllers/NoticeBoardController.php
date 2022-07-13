@@ -18,10 +18,10 @@ class NoticeBoardController extends Controller
     {
         $noticeBoardCategories = NoticeBoardCategory::all();
         $noticeBoard = NoticeBoard::where('notice_board_category_id')->latest()->paginate(10);
-        // $noticeBoards = NoticeBoard::all();
+        $noticeBoards = NoticeBoard::all();
         // ->whereBetween('notice_board_category_id', 'desc');
 
-    $noticeBoards = $noticeBoard->whereNotNull('noticeBoardCategory')->orderBy('notice_board_category_id', 'desc')->get()->groupBy('notice_board_category_id');
+    // $noticeBoards = $noticeBoard->whereNotNull('noticeBoardCategory')->orderBy('notice_board_category_id', 'desc')->get()->groupBy('notice_board_category_id');
 
         return view('dashboard.notice_Board.index', compact('noticeBoardCategories', 'noticeBoards'));
     }

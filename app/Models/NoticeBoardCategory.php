@@ -16,4 +16,6 @@ class NoticeBoardCategory extends Model
     {
         return $this->hasMany(NoticeBoard::class);
     }
+
+
 }

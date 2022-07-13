@@ -5,10 +5,9 @@
     @include('partials.frontend.navbar')
   <!-- End Header -->
 
-{{--
   <!-- ======= Intro Section ======= -->
-     @include('partials.frontend.carousel')
-  <!-- End Intro Section --> --}}
+     {{-- @include('partials.frontend.carousel') --}}
+  <!-- End Intro Section -->
 
 
 
@@ -25,14 +24,14 @@
             <div class="row mt-4">
               <div class="col-lg-12 text-center m-5">
                 <h1 style="text-align: center mb-5">
-                    <span style="tion: underline; color:white; text-align:center ">Blog Page</span>
+                    <span style="tion: underline; color:white; text-align:center ">{{ $blog->title }}</span>
                 </h1>
 
               </div>
 
             </div>
           </div>
-
+{{--
       <div class="container" data-aos="fade-up">
         <div class="row mt-4">
           <div class="col-lg-6 ">
@@ -52,62 +51,62 @@
             <p>Every Sunday<br>3:00 pm - 5:00 pm </p>
           </div>
         </div>
-      </div>
+      </div> --}}
     </section>
     <!-- End About Section -->
 
 
-{{--
+
     <!-- ======= Speakers Section ======= -->
-     @include('speaker')
+     {{-- @include('speaker') --}}
   <!-- End Speakers Section--->
 
 
 
     <!-- =======Event/ notice board Schedule Section ======= -->
-      @include('noticeboard')
-    <!-- End added section --> --}}
+      {{-- @include('noticeboard') --}}
+    <!-- End added section -->
 
     <!-- ======= Blog Section ======= -->
       @yield('content')
     <!-- End blog Section -->
 
-{{--
+
     <!-- ======= Booking Section ======= -->
-     @include('appointment')
+     {{-- @include('appointment') --}}
     <!-- End Buy Ticket Section -->
 
 
 
     <!-- ======= Testimonies Section ======= -->
-     @include('testimony')
+     {{-- @include('testimony') --}}
     <!-- End Testimonies Section -->
 
 
 
     <!-- ======= Gallery Section ======= -->
-   @include('gallery')
+   {{-- @include('gallery') --}}
     <!-- End Gallery Section -->
 
 
     <!-- ======= Supporters/Partnership Section ======= -->
-    @include('donate')
+    {{-- @include('donate') --}}
     <!-- End Sponsors Section -->
 
 
 
     <!-- =======  F.A.Q Section ======= -->
-       @include('faq')
+       {{-- @include('faq') --}}
     <!-- End  F.A.Q Section -->
 
     <!-- ======= Subscribe Section ======= -->
-        @include('subscribe')
+        {{-- @include('subscribe') --}}
     <!-- End Subscribe Section -->
 
 
     <!-- ======= Contact Section ======= -->
-     @include('contact')
-    <!-- End Contact Section --> --}}
+     {{-- @include('contact') --}}
+    <!-- End Contact Section -->
 
 </main><!-- End #main -->
 

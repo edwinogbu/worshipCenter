@@ -96,7 +96,7 @@
 
                                                     <div class="col-md-6">
                                                         <label for="Address" class="col-form-label text-md-right">{{ __('Address') }}</label>
-                                                        <textarea name="skill" style="background-color: white;" class="form-control input-sm p-4 m-5 " rows="2" placeholder="how can we find on your home ..."></textarea>
+                                                        <textarea name="address" style="background-color: white;" class="form-control input-sm p-4 m-5 " rows="2" placeholder="how can we find on your home ..."></textarea>
 
                                                         {{-- <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus> --}}
 
@@ -156,7 +156,7 @@
                                                     </div>
 
                                                     <div class="col-md-6">
-                                                        <label for="membership_status" class="col-form-label text-md-right">{{ __('membership_status') }}</label>
+                                                        <label for="membership_status" class="col-form-label text-md-right">{{ __('Membership_status') }}</label>
                                                         <select name="membership_status" id="" type="text" class="form-control @error('membership_status') is-invalid @enderror"  value="{{ old('membership_status') }}" >
                                                             <option value="">select.. </option>
                                                             <option value="unbaptise">Unbaptise </option>
@@ -188,9 +188,9 @@
                                                     </div>
 
                                                     <div class="col-md-6">
-                                                        <label for="nationality" class="col-form-label text-md-right">{{ __('nationality') }}</label>
+                                                        <label for="nationality" class="col-form-label text-md-right">{{ __('Nationality') }}</label>
 
-                                                        <input id="nationality" type="text" class="form-control @error('nationality') is-invalid @enderror" name="nationality" value="{{ old('nationality') }}" required autocomplete="nationality" autofocus>
+                                                        <input name="nationality" type="text" class="form-control @error('nationality') is-invalid @enderror"  value="{{ old('nationality') }}" required autocomplete="nationality" autofocus>
 
                                                         @error('nationality')
                                                             <span class="invalid-feedback" role="alert">

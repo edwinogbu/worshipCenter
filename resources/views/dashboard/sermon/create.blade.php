@@ -28,7 +28,7 @@
 
                         <!-- About Me Box -->
                         <div class="box box-primary">
-                                <img class="profile-user-img img-responsive img-circle" src="{{ asset('dist/img/credit/visa.png') }}" alt="User profile picture" height="100">
+                                <img class="profile-user-img img-responsive img-circle" src="{{ asset('img/logo-mega-glory-crest.png') }}" alt="User profile picture" height="100">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">About Me</h3>
                                 </div>
@@ -69,7 +69,7 @@
                 <div class="box box-danger"  >
                     <div class="box-header with-border">
                         <div class="user-block">
-                            <img class="justify-content-center rounded-circle" src="{{ asset('img/agclogo.png')}}" alt="" title="" height="20px" width="20px">
+                            <img class="justify-content-center rounded-circle" src="{{ asset('img/logo-mega-glory-crest.png')}}" alt="" title="" height="20px" width="20px">
                             <span class="username">
                                 <a href="#">MembershipID: </a>
                                 </span>
