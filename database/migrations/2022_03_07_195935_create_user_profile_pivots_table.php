@@ -14,7 +14,7 @@ class CreateUserProfilePivotsTable extends Migration
     public function up()
     {
         Schema::create('user_profile_pivots', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('user')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('profiles_id')->constrained('profiles')->cascadeOnDelete();
 
             $table->primary('user_id', 'profiles_id');
